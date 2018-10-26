@@ -1,6 +1,5 @@
 package DataBase;
 
-public interface RelationalDB {
+public interface IRelationalDB {
     boolean executeSQLCommand(String toExecute);
-
 }

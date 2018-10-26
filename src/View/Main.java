@@ -1,16 +1,11 @@
 package View;
-import Model.*;
-import Controller.*;
-import DataBase.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.geometry.Pos;
+import Controller.Controller;
+import Model.Model;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -19,14 +14,15 @@ public class Main extends Application {
     public static Stage primaryStage;
     Model model;
     Controller view;
+
     public static void main(String[] args) {
-        launch( args );
+        launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        createDB();
-        this.primaryStage=primaryStage;
+        //createDB();
+        this.primaryStage = primaryStage;
         BorderPane root1 = new BorderPane();
         model = new Model();
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -43,10 +39,10 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    private void createDB() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        DataBase DB=new DataBase( "DataBase.sqlite" );
+    /*private void createDB() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        DataBase DB = new DataBase("DataBase.sqlite");
         DB.connect();
-    }
+    }*/
 
     private void SetStageCloseEvent(Stage primaryStage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -55,5 +51,4 @@ public class Main extends Application {
             }
         });
     }
-
 }

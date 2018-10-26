@@ -1,27 +1,19 @@
 package Controller;
-import View.*;
-import Model.*;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+
+import Model.ModelInit;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.input.KeyEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
@@ -30,9 +22,6 @@ public class Controller implements Observer {
     ModelInit myModel;
     public javafx.scene.control.Button btn_updtrcd;
     public javafx.scene.control.Button btn_create;
-    public javafx.scene.control.TextField txtfld_user_name;
-    public javafx.scene.control.TextField txtfld_password;
-    public javafx.scene.control.DatePicker BD;
     public Controller( ) {
         myModel=null;
     }
@@ -117,10 +106,4 @@ public class Controller implements Observer {
     public void getRecord(ActionEvent actionEvent) {
     }
 
-    public void createUser(ActionEvent actionEvent) {
-        String userName=txtfld_user_name.getText();
-        String password=txtfld_password.getText();
-        String date=BD.getValue().format( DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        System.out.printf( userName +", "+password+", "+ date );
-    }
 }

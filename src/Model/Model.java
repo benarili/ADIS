@@ -1,14 +1,16 @@
 package Model;
 
+import DatabaseController.DataBaseController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 
 import java.util.Observable;
-import java.util.Observer;
 
 public class Model extends Observable implements ModelInit {
-    @Override
+
+    private DataBaseController dataBaseController;
+    /*@Override
     public boolean createTable(String[] args) {
         return false;
     }
@@ -27,7 +29,7 @@ public class Model extends Observable implements ModelInit {
     public boolean delete(String[] args) {
         return false;
     }
-
+*/
     public Alert getExitMessage() {
         Alert exit = new Alert(Alert.AlertType.CONFIRMATION);
         exit.setTitle("exit");

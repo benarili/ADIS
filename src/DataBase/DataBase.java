@@ -1,9 +1,10 @@
 package DataBase;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import java.sql.*;
-
-public class DataBase implements RelationalDB {
+public class DataBase implements IRelationalDB {
     /**
      * a sample database
      */
@@ -18,7 +19,7 @@ public class DataBase implements RelationalDB {
         location = "jdbc:sqlite:" + fileName;
     }
 
-    public Connection connect() {
+    protected Connection connect() {
 
         conn = null;
         try {
@@ -75,6 +76,8 @@ public class DataBase implements RelationalDB {
             return false;
         }
     }
+
+
 
     /**
      *
