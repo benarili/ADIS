@@ -30,7 +30,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, 800, 700);
         scene.getStylesheets().add("/View/MyStyle.css");
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Comapny name");
+        primaryStage.setTitle("Vacation4U");
         primaryStage.setScene(scene);
         view = fxmlLoader.getController();
         view.setResizeEvent(scene);
@@ -48,6 +48,7 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent windowEvent) {
                 windowEvent.consume();
+                primaryStage.close();
             }
         });
     }

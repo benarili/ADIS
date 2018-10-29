@@ -5,4 +5,5 @@ public interface DataBaseUsable {
     public String getCreateTableCommand();
     public String getDeleteTableCommand();
     public String getUpdateCommand();
+    public String[] getValues();
 }

@@ -18,13 +18,28 @@ public class MyDataBaseController implements DataBaseController  {
 
 
     @Override
-    public void insert(DataBaseUsable entry) throws Exception {
-        dataBase.executeSQLCommand(entry.getInsertCommand());
+    public boolean insert(DataBaseUsable entry) throws Exception {
+       return dataBase.executeInsertCommand(entry.getValues(),entry.getInsertCommand());
     }
 
     @Override
-    public void delete(DataBaseUsable entry) throws Exception {
-        dataBase.executeSQLCommand(entry.getDeleteTableCommand());
+    public String read(String username) throws Exception {
+        return dataBase.executeSelectCommand( username );
+    }
+
+    @Override
+    public void delete(String sql) throws Exception {
+        dataBase.executeSQLCommand(sql);
+    }
+
+    @Override
+    public String readPW(String oldUser) {
+        return dataBase.executeSelectPWCommand( oldUser );
+    }
+
+    @Override
+    public void update(String sql) {
+        dataBase.executeSQLCommand(sql);
     }
 
 }

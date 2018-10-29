@@ -9,6 +9,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CreateUserController">
     <children>
+        <Button fx:id="closeButton" onAction="#closeButtonAction" text="Go Back" />
         <Label layoutX="50.0" layoutY="80.0" mnemonicParsing="false" text="User Name:" />
         <Label layoutX="51.0" layoutY="150.0" mnemonicParsing="false" text="Password" />
         <Label layoutX="50.0" layoutY="302.0" mnemonicParsing="false" text="Birth Date" />

@@ -1,8 +1,5 @@
 package DataBase;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DataBase implements IRelationalDB {
     /**
@@ -27,13 +24,20 @@ public class DataBase implements IRelationalDB {
             //String url = "jdbc:sqlite:nituzDB.sqlite";
             // create a connection to the database
             conn = DriverManager.getConnection(location);
-
-            if (conn != null) {
+            /*String sql = "CREATE TABLE IF NOT EXISTS warehouses (\n"
+                    + "	user_name text PRIMARY KEY,\n"
+                    + "	password text NOT NULL,\n"
+                    + "	name text NOT NULL,\n"
+                    + "	last_name text NOT NULL,\n"
+                    + "	birth_date text NOT NULL,\n"
+                    + "	capacity real\n"
+                    + ");";*/
+            /*if (conn != null) {
 
                 System.out.println("A new database, " + fileName + ", has been connected to.");
             }
 
-            System.out.println("Connection to " + fileName + " has been established.");
+            System.out.println("Connection to " + fileName + " has been established.");*/
 
         } catch (java.sql.SQLException e) {
             System.out.println(e.getMessage());
@@ -56,6 +60,54 @@ public class DataBase implements IRelationalDB {
      * Create a new table in the test database
      *
      */
+    public boolean executeInsertCommand(String[] fields,String toExecute){
+        boolean success = false;
+        connect();
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(toExecute)) {
+            for (int i = 1; i <=fields.length ; i++) {
+                pstmt.setString(i, fields[i-1]);
+            }
+            pstmt.executeUpdate();
+            success = true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return success;
+    }
+
+    @Override
+    public String executeSelectCommand(String sql) {
+        String record = null;
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            // loop through the result set
+            while (rs.next()) {
+                record=rs.getString("Username") +  "\t" +
+                        rs.getString("Password") + "\t" +
+                        rs.getString("Birth_Date") + "\t" +
+                        rs.getString("First_Name") + "\t" +
+                        rs.getString("Last_Name");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return record;
+    }
+    public String executeSelectPWCommand(String sql) {
+        String record = null;
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            // loop through the result set
+            record=rs.getString("Password");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return record;
+    }
+
     @Override
     public boolean executeSQLCommand(String toExecute)
     {
@@ -63,18 +115,14 @@ public class DataBase implements IRelationalDB {
             System.out.println("invalid command");
             return false;
         }
-        try {
-            conn = connect();
-            Statement stmt = conn.createStatement();
-            // create a new table
-            stmt.execute(toExecute);
-            disConnect();
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(toExecute)) {
+            pstmt.executeUpdate();
             return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        return false;
     }
 
 
@@ -92,7 +140,7 @@ public class DataBase implements IRelationalDB {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        DataBase db = new DataBase("test.sqlite");
+        DataBase db = new DataBase("Resources/Vacation4U_DB.sqlite");
         db.connect();
         db.disConnect();
     }

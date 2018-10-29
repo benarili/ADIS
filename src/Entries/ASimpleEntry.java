@@ -8,7 +8,6 @@ public abstract class ASimpleEntry implements DataBaseUsable,IDataBaseEntry {
 
     protected abstract String[] getValuesTitles();
 
-    protected abstract String[] getValues();
 
     protected boolean isStringEmpty(String s){
         if(s==null || s.length()==0)
@@ -37,7 +36,13 @@ public abstract class ASimpleEntry implements DataBaseUsable,IDataBaseEntry {
     }
     @Override
     public String getInsertCommand() {
-        String insertCommand = "INSERT INTO " +getTableName()+ '(' + toStringValuesTitles() + ')' + " VALUES("+ toStringValues() +")";;
+        String insertCommand = "INSERT INTO " +getTableName()+ '(' + toStringValuesTitles() + ')' + " VALUES(";;
+        for (int i = 0; i <toStringValues().split( "," ).length ; i++) {
+            if(i!=toStringValues().split( "," ).length-1)
+            insertCommand+="?,";
+            else
+                insertCommand+="?)";
+        }
         return insertCommand;
     }
 
@@ -56,6 +61,7 @@ public abstract class ASimpleEntry implements DataBaseUsable,IDataBaseEntry {
         sqlCommand+=");";
         return sqlCommand;
     }
+
 
     @Override
     public String getDeleteTableCommand() {

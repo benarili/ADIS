@@ -17,11 +17,15 @@
                         <GridPane.margin>
                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                         </GridPane.margin></Button>
-                    <Button fx:id="btn_read" onAction="#read" prefHeight="27.0" prefWidth="200.0" text="Create" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+                    <Button fx:id="btn_read" onAction="#read" prefHeight="27.0" prefWidth="200.0" text="Read" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                         <GridPane.margin>
                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                         </GridPane.margin></Button>
                     <Button fx:id="btn_updtrcd" onAction="#updateRecord" prefHeight="27.0" prefWidth="200.0" text="Update" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="6">
+                        <GridPane.margin>
+                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </GridPane.margin></Button>
+                    <Button fx:id="btn_delete" onAction="#deleteRecord" prefHeight="27.0" prefWidth="200.0" text="Delete" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="8">
                         <GridPane.margin>
                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                         </GridPane.margin></Button>

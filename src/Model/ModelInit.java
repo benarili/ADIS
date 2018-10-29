@@ -1,5 +1,6 @@
 package Model;
 
+import Entries.DataBaseUsable;
 import javafx.scene.control.Alert;
 
 public interface ModelInit {
@@ -9,4 +10,7 @@ public interface ModelInit {
     boolean delete(String[] args);
     */
     Alert getExitMessage();
+    Alert getCreateUserMessage(boolean result, String username);
+    boolean checkCreateUserParamaters(String userName, String birthDate, String firstName, String lastName, String password);
+    boolean insert(DataBaseUsable usable);
 }

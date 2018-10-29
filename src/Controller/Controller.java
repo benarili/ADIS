@@ -1,5 +1,7 @@
 package Controller;
 
+import DataBase.DataBase;
+import DatabaseController.*;
 import Model.ModelInit;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -20,8 +22,12 @@ import java.util.Optional;
 
 public class Controller implements Observer {
     ModelInit myModel;
+    public javafx.scene.control.Button closeButton;
     public javafx.scene.control.Button btn_updtrcd;
     public javafx.scene.control.Button btn_create;
+    public javafx.scene.control.Button btn_read;
+    public javafx.scene.control.Button btn_delete;
+    public javafx.scene.control.TextField txtfld_pkey;
     public Controller( ) {
         myModel=null;
     }
@@ -101,9 +107,57 @@ public class Controller implements Observer {
     }
 
     public void read(ActionEvent actionEvent) {
+        btn_read.setDisable( true );
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/ReadUser.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Search for user");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        btn_read.setDisable( false );
     }
 
     public void getRecord(ActionEvent actionEvent) {
+        DataBase dataBase = new DataBase("Resources/Vacation4U_DB.sqlite");
+        DataBaseController dbController = new MyDataBaseController(dataBase);
+        String userName=txtfld_pkey.getText();
+        try {
+            String sql = "SELECT * " + "FROM Users WHERE Username = '"+ userName +"'";
+            String record=dbController.read( sql );
+            Alert result = new Alert(Alert.AlertType.INFORMATION);
+            result.setHeaderText(record);
+            result.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
+    public void closeButtonAction(ActionEvent actionEvent) {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+
+    public void deleteRecord(ActionEvent actionEvent) {
+        btn_delete.setDisable( true );
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/DeleteUser.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Delete user");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        btn_delete.setDisable( false );
+    }
 }
