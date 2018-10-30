@@ -11,7 +11,7 @@
       </driver-properties>
     </data-source>
     <data-source source="LOCAL" name="Vacation4U_DB" uuid="3523e9c2-e10e-4e27-a757-d59457f05158">
-      <driver-ref>sqlite.xerial</driver-ref>
+      <driver-ref>1190961c-ad42-47dc-91e6-8b5b4016b78e</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Resources/Vacation4U_DB.sqlite</jdbc-url>
@@ -21,6 +21,23 @@
       <libraries>
         <library>
           <url>file://$USER_HOME$/IdeaProjects/nituzProject/sqlite-jdbc-3.23.1.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Vacation4U_DB [2]" uuid="744767f7-9445-4789-801c-e7253d47fd0f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\liadb\Documents\School\ADIS\proj1.1\ADIS\src\main\resources\Vacation4U_DB.sqlite</jdbc-url>
+      <driver-properties>
+        <property name="enable_load_extension" value="true" />
+      </driver-properties>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.25.1/license.txt</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.25.1/sqlite-jdbc-3.25.1.jar</url>
         </library>
       </libraries>
     </data-source>
