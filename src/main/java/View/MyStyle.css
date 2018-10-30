@@ -1,0 +1,6 @@
+BorderPane{
+    -fx-background-color: darkolivegreen;
+}
+Button{
+    -fx-border-color: blue;
+}
